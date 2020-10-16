@@ -8,6 +8,7 @@ import { DeveloperConsole } from './substrate-lib/components';
 import AccountSelector from './AccountSelector';
 import Balances from './Balances';
 import BlockNumber from './BlockNumber';
+import BlockInfo from './BlockInfo';
 import Events from './Events';
 import Interactor from './Interactor';
 import Metadata from './Metadata';
@@ -57,14 +58,15 @@ function Main () {
         <Grid stackable columns='equal'>
           <Grid.Row stretched>
             <NodeInfo />
-            <Metadata />
+            {/*<Metadata />*/}
             <BlockNumber />
             <BlockNumber finalized />
           </Grid.Row>
           <Grid.Row stretched>
-            <Balances />
+            {/*<Balances />*/}
+            <BlockInfo />
           </Grid.Row>
-          <Grid.Row>
+          {/* <Grid.Row>
             <Transfer accountPair={accountPair} />
             <Upgrade accountPair={accountPair} />
           </Grid.Row>
@@ -74,7 +76,7 @@ function Main () {
           </Grid.Row>
           <Grid.Row>
             <TemplateModule accountPair={accountPair} />
-          </Grid.Row>
+          </Grid.Row>*/}
         </Grid>
       </Container>
       <DeveloperConsole />

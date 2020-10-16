@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Grid, Button, TableBody, TableRow } from 'semantic-ui-react';
+import { Table, Grid, Button } from 'semantic-ui-react';
 import { useSubstrate } from './substrate-lib';
 
 export default function Main (props) {
   const { api, keyring } = useSubstrate();
-  const [blockInfo, setBlockInfo] = useSubstrate();
+  const [blockInfo, setBlockInfo] = useState({});
 
   useEffect(() => {
     let unsubscribeAll = null;
 
     api.rpc.chain.subscribeNewHeads((header) => {
+      console.log(111, header.number.toHuman());
+      console.log(header);
       setBlockInfo([
         { name: 'number', value: header.number.toNumber() },
         { name: 'hash', value: header.hash.toHuman() },
@@ -22,20 +24,21 @@ export default function Main (props) {
     return () => unsubscribeAll && unsubscribeAll();
   }, [api, keyring, setBlockInfo]);
 
+
   return (
     <Grid.Column>
       <h1>Current Block Info</h1>
       <Table celled striped size='small'>
-        <TableBody>
+        <Table.Body>
           { blockInfo && blockInfo[0] ? blockInfo.map(info =>
-            <TableRow key={info.name}>
-              <TableCell width={3} textAlign='right'>{info.name}</TableCell>
-              <TableCell width={3}>{info.value}</TableCell>
-            </TableRow>
+            <Table.Row key={info.name}>
+              <Table.Cell width={3} textAlign='right'>{info.name}</Table.Cell>
+              <Table.Cell width={3}>{info.value}</Table.Cell>
+            </Table.Row>
           ) :
-            <TableRow></TableRow>
+            <Table.Row></Table.Row>
           }
-        </TableBody>
+        </Table.Body>
       </Table>
     </Grid.Column>
   );

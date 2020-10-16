@@ -56,7 +56,7 @@ function Main (props) {
         <Menu.Menu>
           <Image src={`${process.env.PUBLIC_URL}/assets/substrate-logo.png`} size='mini' />
         </Menu.Menu>
-        <Menu.Menu position='right' style={{ alignItems: 'center' }}>
+        {/*<Menu.Menu position='right' style={{ alignItems: 'center' }}>
           { !accountSelected
             ? <span>
               Add your account with the{' '}
@@ -90,7 +90,7 @@ function Main (props) {
             value={accountSelected}
           />
           <BalanceAnnotation accountSelected={accountSelected} />
-        </Menu.Menu>
+        </Menu.Menu>*/}
       </Container>
     </Menu>
   );
